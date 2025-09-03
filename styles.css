@@ -1,0 +1,198 @@
+/* 1. CONFIGURAÇÕES GLOBAIS E VARIÁVEIS */
+:root {
+    --primary-blue: #4F46E5;
+    --primary-orange: #F97316;
+    --light-gray: #F3F4F6;
+    --medium-gray: #9CA3AF;
+    --dark-gray: #374151;
+    --text-color: #111827;
+    --border-color: #E5E7EB;
+    --white: #FFFFFF;
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: 'Inter', sans-serif;
+    background-color: var(--light-gray);
+    color: var(--text-color);
+}
+
+.container {
+    max-width: 1200px;
+    margin-left: auto;
+    margin-right: auto;
+    padding: 0 2rem;
+}
+
+.main-header {
+    background-color: var(--white);
+    border-bottom: 1px solid var(--border-color);
+    padding: 1rem 0;
+}
+
+.main-header .container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.logo {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 1.25rem;
+    font-weight: 700;
+    text-decoration: none;
+    color: var(--text-color);
+}
+
+.main-nav {
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+}
+
+.nav-link {
+    text-decoration: none;
+    color: var(--dark-gray);
+    font-weight: 500;
+    padding: 0.5rem 1rem;
+    border-radius: 6px;
+    transition: background-color 0.2s ease, color 0.2s ease;
+}
+
+/* ===== ESTA É A REGRA ATUALIZADA ===== */
+.nav-link:hover {
+    background-color: var(--primary-orange);
+    color: var(--white);
+}
+
+.nav-link.active {
+    background-color: var(--primary-orange);
+    color: var(--white);
+}
+
+.nav-link.icon {
+    color: var(--dark-gray);
+    padding: 0.5rem;
+}
+
+/* Esta regra garante que o ícone não fique laranja */
+.nav-link.icon:hover {
+    background-color: transparent;
+    color: var(--primary-blue);
+}
+
+
+/* 3. CONTEÚDO PRINCIPAL */
+.main-content {
+    padding-top: 3rem;
+    padding-bottom: 3rem;
+}
+
+.view-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 2.5rem;
+}
+
+.view-title h1 {
+    font-size: 2.25rem;
+    color: var(--text-color);
+    margin-bottom: 0.5rem;
+}
+
+.view-title p {
+    font-size: 1rem;
+    color: var(--medium-gray);
+}
+
+.btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.75rem 1.5rem;
+    border: none;
+    border-radius: 8px;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+}
+
+.btn-primary {
+    background-color: var(--primary-blue);
+    color: var(--white);
+}
+
+.btn-primary:hover {
+    background-color: #4338CA;
+}
+
+
+/* 4. GRID E CARDS DE CATEGORIA */
+.categories-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+    gap: 1.5rem;
+}
+
+.card {
+    background-color: var(--white);
+    border: 1px solid var(--border-color);
+    border-radius: 12px;
+    padding: 1.5rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    transition: box-shadow 0.2s ease, transform 0.2s ease;
+}
+
+.card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 10px 15px -3px rgba(0,0,0,0.1), 0 4px 6px -2px rgba(0,0,0,0.05);
+}
+
+.card-header {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+.card-icon {
+    color: var(--primary-blue);
+}
+
+.card-header h2 {
+    font-size: 1.25rem;
+    font-weight: 600;
+    color: var(--text-color);
+}
+
+.card-body {
+    flex-grow: 1; /* Faz o corpo do card crescer para preencher o espaço */
+    color: var(--dark-gray);
+}
+
+.stats-group {
+    display: flex;
+    justify-content: space-between;
+    font-size: 0.875rem;
+}
+
+.card-footer {
+    border-top: 1px solid var(--border-color);
+    padding-top: 1rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 0.875rem;
+    font-weight: 500;
+    color: var(--dark-gray);
+}

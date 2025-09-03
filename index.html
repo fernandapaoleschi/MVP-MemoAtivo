@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MemoAtivo - Dashboard</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+    <header class="main-header">
+        <div class="container">
+            <a href="#" class="logo">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20v2H6.5A2.5 2.5 0 0 1 4 16.5v-11A2.5 2.5 0 0 1 6.5 3H10v2H6.5a.5.5 0 0 0-.5.5v11a.5.5 0 0 0 .5.5H20V15h2v2.5a2.5 2.5 0 0 1-2.5 2.5H6.5A4.5 4.5 0 0 1 2 15.5v-7A4.5 4.5 0 0 1 6.5 4H14a1 1 0 0 1 1 1v1h2V5a3 3 0 0 0-3-3H6.5A2.5 2.5 0 0 0 4 4.5v11ZM22 8V5h-2v3h-3v2h3v3h2v-3h3V8h-3Z" fill="#4F46E5"></path></svg>
+                <span>MemoAtivo</span>
+            </a>
+<nav class="main-nav">
+                <a href="#" class="nav-link active">Dashboard</a>
+                <a href="#" class="nav-link">Criar</a> <a href="#" class="nav-link icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg>
+                </a>
+            </nav>
+        </div>
+    </header>
+
+    <main class="main-content">
+        <div class="container">
+            <div class="view-header">
+                <div class="view-title">
+                    <h1>Suas Categorias de Estudo</h1>
+                    <p>Organize seus estudos por categorias e crie novos conjuntos de flashcards</p>
+                </div>
+                <button class="btn btn-primary">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="5" x2="12" y2="19"></line><line x1="5" y1="12" x2="19" y2="12"></line></svg>
+                    <span>Nova Categoria</span>
+                </button>
+            </div>
+
+            <div class="categories-grid">
+
+                <article class="card">
+                    <div class="card-header">
+                        <div class="card-icon">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z"></path></svg>
+                        </div>
+                        <h2>História</h2>
+                    </div>
+                    <div class="card-body">
+                        <div class="stats-group">
+                            <span>2 conjuntos</span>
+                            <span>65 cards total</span>
+                        </div>
+                    </div>
+                    <div class="card-footer">
+                        <span>20 cards para revisar</span>
+                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"></polyline></svg>
+                    </div>
+                </article>
+
+                <article class="card">
+                    <div class="card-header">
+                         <div class="card-icon">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z"></path></svg>
+                        </div>
+                        <h2>Matemática</h2>
+                    </div>
+                    <div class="card-body">
+                        <div class="stats-group">
+                            <span>1 conjuntos</span>
+                            <span>30 cards total</span>
+                        </div>
+                    </div>
+                    <div class="card-footer">
+                        <span>5 cards para revisar</span>
+                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"></polyline></svg>
+                    </div>
+                </article>
+
+                <article class="card">
+                    <div class="card-header">
+                         <div class="card-icon">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z"></path></svg>
+                        </div>
+                        <h2>Português</h2>
+                    </div>
+                    <div class="card-body">
+                        <div class="stats-group">
+                            <span>1 conjuntos</span>
+                            <span>20 cards total</span>
+                        </div>
+                    </div>
+                    <div class="card-footer">
+                        <span>15 cards para revisar</span>
+                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"></polyline></svg>
+                    </div>
+                </article>
+
+            </div>
+        </div>
+    </main>
+
+</body>
+</html>
