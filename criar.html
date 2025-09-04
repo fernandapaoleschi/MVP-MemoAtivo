@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MemoAtivo - Criar Conjunto</title>
+    <!-- Mudei o link para "estilo.css" para manter a consistência -->
+    <link rel="stylesheet" href="estilo.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+
+    <!-- Cabeçalho Consistente -->
+    <header class="main-header">
+        <div class="container">
+            <a href="index.html" class="logo">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20v2H6.5A2.5 2.5 0 0 1 4 16.5v-11A2.5 2.5 0 0 1 6.5 3H10v2H6.5a.5.5 0 0 0-.5.5v11a.5.5 0 0 0 .5.5H20V15h2v2.5a2.5 2.5 0 0 1-2.5 2.5H6.5A4.5 4.5 0 0 1 2 15.5v-7A4.5 4.5 0 0 1 6.5 4H14a1 1 0 0 1 1 1v1h2V5a3 3 0 0 0-3-3H6.5A2.5 2.5 0 0 0 4 4.5v11ZM22 8V5h-2v3h-3v2h3v3h2v-3h3V8h-3Z" fill="#4F46E5"></path></svg>
+                <span>MemoAtivo</span>
+            </a>
+            <nav class="main-nav">
+                <a href="index.html" class="nav-link">Dashboard</a>
+                <a href="criar.html" class="nav-link active">Criar</a>
+                <a href="#" class="nav-link icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg>
+                </a>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Conteúdo Principal Alinhado com o Design -->
+    <main class="main-content">
+        <div class="container form-page-container">
+            <div class="view-header">
+                <h1>Criar Novo Conjunto de Estudo</h1>
+                <p>Digite um tópico e deixe a IA gerar flashcards para você</p>
+            </div>
+
+            <div class="form-container">
+                <form id="create-set-form">
+                    <div class="form-group">
+                        <label for="category">Categoria *</label>
+                        <select id="category" name="category" required>
+                            <option value="" disabled selected>Selecione uma categoria</option>
+                            <option value="historia">História</option>
+                            <option value="matematica">Matemática</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="topic">Tópico *</label>
+                        <input type="text" id="topic" name="topic" placeholder="ex: Independência do Brasil" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="description">Descrição *</label>
+                        <textarea id="description" name="description" rows="4" placeholder="Adicione mais contexto sobre o que você quer estudar..." required></textarea>
+                        <small>Forneça detalhes para que a IA gere flashcards mais precisos</small>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="num-flashcards">Número de Flashcards: <span id="slider-value">10</span></label>
+                        <input type="range" id="num-flashcards" name="num-flashcards" min="5" max="10" value="10">
+                        <div class="slider-labels">
+                            <span>5 cards</span>
+                            <span>10 cards</span>
+                        </div>
+                    </div>
+                    
+                    <button type="submit" class="btn btn-primary btn-full-width">
+                         <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon></svg>
+                        <span>Gerar Flashcards</span>
+                    </button>
+                </form>
+            </div>
+        </div>
+    </main>
+    
+    <script>
+        // Pequeno script para o slider (pode ser movido para o .js principal depois)
+        const slider = document.getElementById('num-flashcards');
+        const sliderValue = document.getElementById('slider-value');
+        if (slider) {
+            slider.oninput = function() {
+                sliderValue.textContent = this.value;
+            }
+        }
+    </script>
+
+</body>
+</html>

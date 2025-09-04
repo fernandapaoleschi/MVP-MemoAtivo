@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sessão de Estudo - MemoAtivo</title>
+    <!-- Mudei o link para "estilo.css" para manter a consistência -->
+    <link rel="stylesheet" href="estilo.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+
+    <!-- Cabeçalho Consistente -->
+    <header class="main-header">
+        <div class="container">
+             <a href="index.html" class="logo">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20v2H6.5A2.5 2.5 0 0 1 4 16.5v-11A2.5 2.5 0 0 1 6.5 3H10v2H6.5a.5.5 0 0 0-.5.5v11a.5.5 0 0 0 .5.5H20V15h2v2.5a2.5 2.5 0 0 1-2.5 2.5H6.5A4.5 4.5 0 0 1 2 15.5v-7A4.5 4.5 0 0 1 6.5 4H14a1 1 0 0 1 1 1v1h2V5a3 3 0 0 0-3-3H6.5A2.5 2.5 0 0 0 4 4.5v11ZM22 8V5h-2v3h-3v2h3v3h2v-3h3V8h-3Z" fill="#4F46E5"></path></svg>
+                <span>MemoAtivo</span>
+            </a>
+            <nav class="main-nav">
+                <a href="index.html" class="nav-link">Dashboard</a>
+                <a href="criar.html" class="nav-link">Criar</a>
+                <a href="#" class="nav-link icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg>
+                </a>
+            </nav>
+        </div>
+    </header>
+
+    <main class="main-content">
+        <div class="container study-page-container">
+            
+            <!-- Cabeçalho da Sessão de Estudo -->
+            <div class="study-header">
+                <div class="study-info">
+                    <h2>Independência do Brasil</h2>
+                    <p>Cartão <span id="current-card">1</span> de <span id="total-cards">25</span></p>
+                </div>
+                <div class="study-title">
+                    Sessão de Estudo
+                </div>
+            </div>
+
+            <!-- Barra de Progresso -->
+            <div class="progress-bar-container">
+                <div class="progress-bar" id="progress-bar" style="width: 4%;"></div> <!-- Exemplo de progresso inicial -->
+            </div>
+
+            <!-- Contentor do Flashcard (para a animação) -->
+            <div class="flashcard-container">
+                <div class="flashcard" id="flashcard">
+                    <div class="flashcard-front">
+                        <span class="card-tag">Pergunta</span>
+                        <p class="card-text">Quando o Brasil declarou independência de Portugal?</p>
+                    </div>
+                    <div class="flashcard-back">
+                        <span class="card-tag answer">Resposta</span>
+                        <p class="card-text">7 de Setembro de 1822.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Botões de Ação -->
+            <div class="study-actions" id="reveal-action">
+                <button class="btn btn-primary btn-reveal">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path><circle cx="12" cy="12" r="3"></circle></svg>
+                    <span>Revelar Resposta</span>
+                </button>
+            </div>
+            
+            <div class="study-actions hidden" id="rate-action">
+                <button class="btn btn-rate-incorrect">Incorreto</button>
+                <button class="btn btn-rate-correct">Correto</button>
+            </div>
+
+            <!-- Contadores de Resultado -->
+            <div class="study-results">
+                <span><span class="dot correct"></span>Correto: <strong id="correct-count">0</strong></span>
+                <span><span class="dot incorrect"></span>Incorreto: <strong id="incorrect-count">0</strong></span>
+            </div>
+
+        </div>
+    </main>
+    
+    <!-- O script.js principal irá controlar a lógica desta página -->
+    <script src="script.js"></script>
+</body>
+</html>
