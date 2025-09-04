@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sub-tópicos de História - MemoAtivo</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <header>
+        <nav id="navbar" class="container">
+            <a href="dashboard.html" id="logo">
+                <img src="images/MemoAtivo.png" alt="Logo MemoAtivo">
+            </a>
+            <div class="nav-right">
+                <ul id="nav_list">
+                    <li class="nav-item"><a href="dashboard.html">Dashboard</a></li>
+                    <li class="nav-item"><a href="criar.html">Create</a></li>
+                </ul>
+                <a href="#" class="nav-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg>
+                </a>
+            </div>
+        </nav>
+    </header>
+
+    <main class="main-content">
+        <div class="container">
+            <div class="view-header">
+                <div class="view-title">
+                    <h1>História - Sub-tópicos de Estudo</h1>
+                    <p>Selecione um sub-tópico para ver seus conjuntos de flashcards</p>
+                </div>
+                <button class="btn btn-primary">+ Novo Sub-tópico</button>
+            </div>
+            
+            <a href="dashboard.html" class="back-link">← Voltar às Categorias</a>
+            
+            <div class="conjuntos-grid">
+                <a href="subtopico.html?categoria=História&subtopico=Independência+do+Brasil">
+                    <article class="subtopic-card">
+                        <div class="card-header">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z"></path></svg>
+                            <h2>Independência do Brasil</h2>
+                        </div>
+                        <div class="card-footer">
+                            <span>1 conjunto • 25 cards</span>
+                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"></polyline></svg>
+                        </div>
+                    </article>
+                </a>
+                
+                <a href="subtopico.html?categoria=História&subtopico=Segunda+Guerra+Mundial">
+                    <article class="subtopic-card">
+                        <div class="card-header">
+                             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z"></path></svg>
+                            <h2>Segunda Guerra Mundial</h2>
+                        </div>
+                        <div class="card-footer">
+                            <span>1 conjunto • 40 cards</span>
+                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"></polyline></svg>
+                        </div>
+                    </article>
+                </a>
+            </div>
+        </div>
+    </main>
+
+</body>
+</html>
