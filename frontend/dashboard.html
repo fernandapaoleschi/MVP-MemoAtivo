@@ -35,13 +35,11 @@
           <h1>Suas Categorias de Estudo</h1>
           <p>Organize seus estudos por categorias e crie novos conjuntos de flashcards</p>
         </div>
-        <button id="novaCategoriaBtn" class="btn btn-primary">
-          <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="5" x2="12" y2="19"></line><line x1="5" y1="12" x2="19" y2="12"></line></svg>
-          <span>Nova Categoria</span>
-        </button>
+        <button id="novaCategoriaBtn" class="btn btn-primary">+ Nova Categoria</button>
       </div>
-      
-      <div class="categories-grid" id="categoriesGrid"></div>
+      <div class="categories-grid" id="categoriesGrid">
+         <!-- As categorias serão carregadas aqui -->
+      </div>
     </div>
   </main>
   
@@ -78,7 +76,7 @@
                 renderCategories(categories);
             } catch (error) {
                 console.error("Erro ao carregar categorias:", error);
-                grid.innerHTML = '<p class="error-message">Não foi possível ligar ao servidor. Verifique se o backend (flask run) está em execução.</p>';
+                grid.innerHTML = `<p class="error-message">Não foi possível carregar as categorias. Verifique se o servidor está em execução.</p>`;
             }
         }
 
@@ -89,20 +87,32 @@
                 return;
             }
             categories.forEach(category => {
-                const totalSetsText = category.totalSets === 1 ? 'conjunto' : 'conjuntos';
-                const totalCardsText = category.totalCards === 1 ? 'card total' : 'cards total';
+                const link = `conjuntos.html?id=${category.id}&categoria=${encodeURIComponent(category.name)}`;
                 const cardHTML = `
-                    <a href="conjuntos.html?id=${category.id}&categoria=${encodeURIComponent(category.name)}">
-                        <article class="card"><div class="card-header"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z"></path></svg><h2>${category.name}</h2></div><div class="card-body"><span>${category.totalSets} ${totalSetsText}</span><span>${category.totalCards} ${totalCardsText}</span></div><div class="card-footer"><span>${category.cardsToReview} cards para revisar</span><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"></polyline></svg></div></article>
+                    <a href="${link}">
+                        <article class="card">
+                            <div class="card-header">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z"></path></svg>
+                                <h2>${category.name}</h2>
+                            </div>
+                            <div class="card-body">
+                                <span>${category.totalSets} conjuntos</span>
+                                <span>${category.totalCards} cards total</span>
+                            </div>
+                            <div class="card-footer">
+                                <span>${category.cardsToReview} cards para revisar</span>
+                                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"></polyline></svg>
+                            </div>
+                        </article>
                     </a>`;
                 grid.insertAdjacentHTML('beforeend', cardHTML);
             });
         }
-        
+
         loadCategories();
 
         const modal = document.getElementById("modalNovaCategoria");
-        const btnNova = document.getElementById("novaCategoriaBtn");
+        const btnNovo = document.getElementById("novaCategoriaBtn");
         const btnClose = document.getElementById("closeModalBtn");
         const btnCancel = document.getElementById("cancelModalBtn");
         const btnCreate = document.getElementById("createModalBtn");
@@ -110,40 +120,30 @@
         
         function abrirModal() { nomeCategoriaInput.value = ""; modal.classList.remove("hidden"); nomeCategoriaInput.focus(); }
         function fecharModal() { modal.classList.add("hidden"); }
-        
-        // ESTA É A VERSÃO CORRETA DA FUNÇÃO
+
         async function criarCategoria() {
             const name = nomeCategoriaInput.value.trim();
-            if (!name) {
-                alert("Por favor, insira um nome para a categoria.");
-                return;
-            }
-
+            if (!name) { alert("Por favor, digite o nome da categoria."); return; }
             try {
                 const response = await fetch(API_URL, {
                     method: 'POST',
                     headers: { 'Content-Type': 'application/json' },
                     body: JSON.stringify({ name: name })
                 });
-
-                if (!response.ok) {
-                    throw new Error(`O servidor respondeu com o erro ${response.status}`);
-                }
-
+                if (!response.ok) throw new Error(`O servidor respondeu com erro ${response.status}`);
                 fecharModal();
-                loadCategories(); // Atualiza a lista de categorias para mostrar a nova
-
+                loadCategories();
             } catch (error) {
                 console.error("Erro ao criar categoria:", error);
-                alert("Falha ao criar a categoria. Verifique a consola para mais detalhes.");
+                alert("Falha ao criar a categoria.");
             }
         }
         
-        btnNova.addEventListener("click", abrirModal);
+        btnNovo.addEventListener("click", abrirModal);
         btnClose.addEventListener("click", fecharModal);
         btnCancel.addEventListener("click", fecharModal);
         btnCreate.addEventListener("click", criarCategoria);
-        nomeCategoriaInput.addEventListener("keyup", (event) => { if (event.key === "Enter") btnCreate.click(); });
+        nomeCategoriaInput.addEventListener("keyup", (event) => { if (event.key === "Enter") criarCategoria(); });
     });
   </script>
 

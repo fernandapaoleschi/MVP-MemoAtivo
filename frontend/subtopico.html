@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Conjuntos de Estudo - MemoAtivo</title>
+    <title>Sub-tópicos de Estudo - MemoAtivo</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
@@ -22,7 +22,7 @@
                     <li class="nav-item"><a href="criar.html">Create</a></li>
                 </ul>
                 <a href="#" class="nav-icon">
-                    <svg xmlns="http://www.w.org/2000/svg" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg>
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg>
                 </a>
             </div>
         </nav>
@@ -32,40 +32,140 @@
         <div class="container">
             <div class="view-header">
                 <div class="view-title">
-                    <h1 id="subtopicoTitulo">Sub-tópico - Conjuntos</h1>
-                    <p>Gerencie seus flashcards neste sub-tópico</p>
+                    <h1 id="pageTitle">A carregar...</h1>
+                    <p>Selecione um sub-tópico para ver seus conjuntos de flashcards</p>
                 </div>
-                 <button class="btn btn-primary">+ Novo Conjunto</button>
+                <button id="novoSubtopicoBtn" class="btn btn-primary">+ Novo Sub-tópico</button>
             </div>
             
-            <a href="conjuntos.html?categoria=História" class="back-link">← Voltar aos Sub-tópicos de História</a>
-
-            <div class="conjuntos-grid">
-                <article class="set-card">
-                    <div>
-                        <h3>Causas da Independência</h3>
-                        <div class="set-stats">
-                            <div class="stat-item">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="7" width="20" height="14" rx="2" ry="2"></rect><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"></path></svg>
-                                <span>15 cards</span>
-                                <span class="tag-revisao">4 para revisar</span>
-                            </div>
-                            <div class="stat-item">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg>
-                                <span>Estudado ontem</span>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="set-footer">
-                        <a href="estudar.html" class="btn btn-primary">
-                            Estudar Agora
-                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"></polyline></svg>
-                        </a>
-                    </div>
-                </article>
+            <a href="dashboard.html" class="back-link">← Voltar às Categorias</a>
+            
+            <div class="conjuntos-grid" id="subtopicsGrid">
+                <!-- Os sub-tópicos serão carregados aqui -->
             </div>
         </div>
     </main>
 
+    <!-- MODAL DE NOVO SUB-TÓPICO -->
+    <div id="modalNovoSubtopico" class="modal-overlay hidden">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>Criar Novo Sub-tópico</h2>
+                <button class="close-button" id="closeModalBtn">×</button>
+            </div>
+            <div class="modal-body">
+                <div class="form-group">
+                    <label for="nomeSubtopicoInput">Nome do Sub-tópico</label>
+                    <input type="text" id="nomeSubtopicoInput" placeholder="Ex: Guerra Fria, Revolução Francesa...">
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button id="cancelModalBtn" class="btn btn-secondary">Cancelar</button>
+                <button id="createModalBtn" class="btn btn-primary">Criar Sub-tópico</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const grid = document.getElementById("subtopicsGrid");
+            const pageTitle = document.getElementById("pageTitle");
+
+            const params = new URLSearchParams(window.location.search);
+            const categoryId = params.get('id');
+            const categoryName = params.get('categoria') || 'Categoria';
+
+            pageTitle.textContent = `${categoryName} - Sub-tópicos de Estudo`;
+
+            if (!categoryId) {
+                grid.innerHTML = `<p class="error-message">ID da categoria não encontrado no URL. Volte ao dashboard e tente novamente.</p>`;
+                return;
+            }
+
+            const API_URL = `http://127.0.0.1:5000/api/categories/${categoryId}/subtopics`;
+
+            async function loadSubtopics() {
+                grid.innerHTML = '<p>A carregar sub-tópicos...</p>';
+                try {
+                    const response = await fetch(API_URL);
+                    if (!response.ok) {
+                        const errorData = await response.json();
+                        throw new Error(errorData.error || `Erro na rede: ${response.status}`);
+                    }
+                    const subtopics = await response.json();
+                    renderSubtopics(subtopics);
+                } catch (error) {
+                    console.error("Erro ao carregar sub-tópicos:", error);
+                    grid.innerHTML = `<p class="error-message">Não foi possível carregar os sub-tópicos. Verifique se o servidor está em execução e se a categoria existe.</p>`;
+                }
+            }
+
+            function renderSubtopics(subtopics) {
+                grid.innerHTML = '';
+                if (subtopics.length === 0) {
+                    grid.innerHTML = '<p>Nenhum sub-tópico encontrado. Clique em "Novo Sub-tópico" para criar o primeiro!</p>';
+                    return;
+                }
+                subtopics.forEach(sub => {
+                    // CORREÇÃO AQUI: Passamos todos os parâmetros necessários para a próxima página
+                    const link = `subtopico.html?catId=${categoryId}&catName=${encodeURIComponent(categoryName)}&subId=${sub.id}&subName=${encodeURIComponent(sub.name)}`;
+                    const cardHTML = `
+                        <a href="${link}">
+                            <article class="subtopic-card">
+                                <div class="card-header">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z"></path></svg>
+                                    <h2>${sub.name}</h2>
+                                </div>
+                                <div class="card-footer">
+                                    <span>${sub.totalSets} conjuntos • ${sub.totalCards} cards</span>
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"></polyline></svg>
+                                </div>
+                            </article>
+                        </a>`;
+                    grid.insertAdjacentHTML('beforeend', cardHTML);
+                });
+            }
+
+            loadSubtopics();
+
+            // Lógica do Modal
+            const modal = document.getElementById("modalNovoSubtopico");
+            const btnNovo = document.getElementById("novoSubtopicoBtn");
+            const btnClose = document.getElementById("closeModalBtn");
+            const btnCancel = document.getElementById("cancelModalBtn");
+            const btnCreate = document.getElementById("createModalBtn");
+            const nomeSubtopicoInput = document.getElementById("nomeSubtopicoInput");
+
+            function abrirModal() { nomeSubtopicoInput.value = ""; modal.classList.remove("hidden"); nomeSubtopicoInput.focus(); }
+            function fecharModal() { modal.classList.add("hidden"); }
+
+            async function criarSubtopico() {
+                const name = nomeSubtopicoInput.value.trim();
+                if (!name) { alert("Por favor, insira um nome para o sub-tópico."); return; }
+
+                try {
+                    const response = await fetch(API_URL, {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify({ name: name })
+                    });
+                    if (!response.ok) throw new Error(`O servidor respondeu com o erro ${response.status}`);
+                    fecharModal();
+                    loadSubtopics();
+                } catch (error) {
+                    console.error("Erro ao criar sub-tópico:", error);
+                    alert("Falha ao criar o sub-tópico.");
+                }
+            }
+
+            btnNovo.addEventListener("click", abrirModal);
+            btnClose.addEventListener("click", fecharModal);
+            btnCancel.addEventListener("click", fecharModal);
+            btnCreate.addEventListener("click", criarSubtopico);
+            nomeSubtopicoInput.addEventListener("keyup", (event) => { if (event.key === "Enter") criarSubtopico(); });
+        });
+    </script>
+
 </body>
 </html>
+

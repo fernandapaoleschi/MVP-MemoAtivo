@@ -49,6 +49,11 @@
           "id": "sub-0e0fc03d-d8a0-4679-99b3-fb927b0783f5",
           "name": "teste",
           "sets": []
+        },
+        {
+          "id": "sub-15b2cb62-c353-42c5-8ae0-e8ac30b0210f",
+          "name": "teste",
+          "sets": []
         }
       ]
     },
@@ -60,11 +65,22 @@
     {
       "id": "cat-7cda91a2-20e7-4d36-b02e-9105bbc21ddd",
       "name": "teste",
-      "subtopics": []
+      "subtopics": [
+        {
+          "id": "sub-4690ab4a-b682-4d07-895b-624915a78fcd",
+          "name": "teste",
+          "sets": []
+        }
+      ]
     },
     {
       "id": "cat-30525e36-62cc-4f82-aefe-54da73cd859f",
       "name": "biologia",
+      "subtopics": []
+    },
+    {
+      "id": "cat-db2cc50e-aa4e-4607-ab9d-5b140a4d8ebc",
+      "name": "teste",
       "subtopics": []
     }
   ]
