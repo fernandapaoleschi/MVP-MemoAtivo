@@ -1,38 +1,56 @@
 {
   "categories": [
     {
-      "id": 1,
-      "nome": "Matemática",
-      "sets": [
+      "id": "cat-hist-01",
+      "name": "História",
+      "subtopics": [
         {
-          "id": 101,
-          "titulo": "Álgebra Básica",
-          "flashcards": [
-            { "id": 1001, "pergunta": "x²=9, quanto vale x?", "resposta": "±3" },
-            { "id": 1002, "pergunta": "Derivada de x²?", "resposta": "2x" }
+          "id": "sub-hist-01",
+          "name": "Independência do Brasil",
+          "sets": [
+            {
+              "id": "set-indep-01",
+              "name": "Causas da Independência",
+              "lastStudied": "2025-09-02T18:00:00Z",
+              "flashcards": [
+                {
+                  "id": "card-001",
+                  "question": "Qual evento na Europa foi o estopim para a vinda da Família Real Portuguesa para o Brasil?",
+                  "answer": "As Invasões Napoleônicas, que levaram à invasão de Portugal por tropas francesas."
+                },
+                {
+                  "id": "card-002",
+                  "question": "O que foi a Abertura dos Portos às Nações Amigas em 1808?",
+                  "answer": "Um decreto de D. João VI que permitiu ao Brasil comerciar diretamente com outras nações além de Portugal, quebrando o pacto colonial."
+                }
+              ]
+            }
           ]
         },
         {
-          "id": 102,
-          "titulo": "Trigonometria",
-          "flashcards": [
-            { "id": 1003, "pergunta": "sen(90°)?", "resposta": "1" }
+          "id": "sub-hist-02",
+          "name": "Segunda Guerra Mundial",
+          "sets": [
+            {
+              "id": "set-ww2-01",
+              "name": "Principais Batalhas",
+              "lastStudied": "2025-08-28T12:00:00Z",
+              "flashcards": [
+                {
+                  "id": "card-003",
+                  "question": "Qual evento marcou o início da Segunda Guerra Mundial em 1939?",
+                  "answer": "A invasão da Polônia pela Alemanha."
+                }
+              ]
+            }
           ]
         }
       ]
     },
     {
-      "id": 2,
-      "nome": "História",
-      "sets": [
-        {
-          "id": 201,
-          "titulo": "Segunda Guerra Mundial",
-          "flashcards": [
-            { "id": 2001, "pergunta": "Em que ano começou?", "resposta": "1939" }
-          ]
-        }
-      ]
+      "id": "cat-mat-01",
+      "name": "Matemática",
+      "subtopics": []
     }
   ]
 }

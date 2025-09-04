@@ -1,54 +1,56 @@
+import json
 from flask import Flask, jsonify
 from flask_cors import CORS
-import json
 
+# --- SETUP INICIAL ---
+# Cria a aplicação Flask
 app = Flask(__name__)
-CORS(app)  # permite que o frontend acesse a API
+# Habilita o CORS para permitir que o front-end acesse a API
+CORS(app)
 
-# Função para carregar o banco de dados JSON
-def load_db():
-    with open("database.json", "r", encoding="utf-8") as f:
-        return json.load(f)
+# --- FUNÇÃO AUXILIAR ---
+# Uma função para carregar os dados do nosso "banco de dados"
+def load_data():
+    """Abre e lê o ficheiro database.json."""
+    try:
+        with open('database.json', 'r', encoding='utf-8') as f:
+            return json.load(f)
+    except FileNotFoundError:
+        # Se o ficheiro não existir, retorna uma estrutura vazia
+        return {"categories": []}
 
-# ---------------------------
-# Backend Matheus (API básica)
-# ---------------------------
+# --- ENDPOINTS DA API ---
 
-# Endpoint: GET /api/categories
-# Retorna um resumo das categorias
-@app.route("/api/categories", methods=["GET"])
+@app.route('/api/categories', methods=['GET'])
 def get_categories():
-    db = load_db()
-    resumo = []
-    for cat in db["categories"]:
-        total_sets = len(cat["sets"])
-        total_flashcards = sum(len(s["flashcards"]) for s in cat["sets"])
-        resumo.append({
-            "id": cat["id"],
-            "nome": cat["nome"],
-            "total_sets": total_sets,
-            "total_flashcards": total_flashcards
+    """
+    Este endpoint lê todas as categorias do banco de dados, calcula um resumo
+    para cada uma e retorna para o front-end.
+    """
+    data = load_data()
+    summaries = []
+
+    for category in data.get('categories', []):
+        total_sets = 0
+        total_cards = 0
+        
+        for subtopic in category.get('subtopics', []):
+            total_sets += len(subtopic.get('sets', []))
+            
+            # CORREÇÃO: A variável 'for-set' foi alterada para 'study_set'
+            for study_set in subtopic.get('sets', []):
+                total_cards += len(study_set.get('flashcards', []))
+
+        summaries.append({
+            'id': category.get('id'),
+            'name': category.get('name'),
+            'totalSets': total_sets,
+            'totalCards': total_cards,
+            'cardsToReview': 0  # Lógica de revisão a ser implementada
         })
-    return jsonify(resumo)
+    
+    return jsonify(summaries)
 
-
-# ---------------------------
-# Backend Felipe (Lógica extra)
-# ---------------------------
-
-# Endpoint: GET /api/categories/<id>/sets
-# Retorna apenas os conjuntos de uma categoria
-@app.route("/api/categories/<int:category_id>/sets", methods=["GET"])
-def get_sets(category_id):
-    db = load_db()
-    for cat in db["categories"]:
-        if cat["id"] == category_id:
-            return jsonify(cat["sets"])
-    return jsonify({"erro": "Categoria não encontrada"}), 404
-
-
-# (planejamento para o Dia 2: criar novos endpoints POST/PUT/DELETE)
-
-# Rodar servidor
-if __name__ == "__main__":
+# --- EXECUÇÃO DO SERVIDOR ---
+if __name__ == '__main__':
     app.run(debug=True)
