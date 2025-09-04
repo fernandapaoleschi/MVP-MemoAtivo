@@ -34,14 +34,13 @@
                     <h1>As Suas Categorias de Estudo</h1>
                     <p>Organize os seus estudos por categorias e crie novos conjuntos de flashcards</p>
                 </div>
-                <!-- O 'a' foi trocado por 'button' e adicionado um ID -->
                 <button id="open-modal-btn" class="btn btn-primary">
                     <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="5" x2="12" y2="19"></line><line x1="5" y1="12" x2="19" y2="12"></line></svg>
                     <span>Nova Categoria</span>
                 </button>
             </div>
 
-            <div class="categories-grid">
+            <div id="categories-grid" class="categories-grid">
                 <!-- Card 1: História -->
                 <a href="conjuntos.html" class="card-link">
                     <article class="card">
@@ -88,7 +87,7 @@
         </div>
     </main>
 
-    <!-- ======== CÓDIGO DO MODAL ADICIONADO AQUI ======== -->
+    <!-- ======== CÓDIGO DO MODAL ======== -->
     <div id="category-modal" class="modal-overlay hidden">
         <div class="modal-content">
             <div class="modal-header">
@@ -96,26 +95,33 @@
                 <button id="close-modal-btn" class="close-button">&times;</button>
             </div>
             <div class="modal-body">
-                <form>
+                <form id="category-form">
                     <div class="form-group">
                         <label for="category-name">Nome da Categoria</label>
-                        <input type="text" id="category-name" placeholder="Ex: Biologia, Física, Química...">
+                        <input type="text" id="category-name" placeholder="Ex: Biologia, Física, Química..." required>
                     </div>
                 </form>
             </div>
             <div class="modal-footer">
                 <button id="cancel-btn" class="btn btn-secondary">Cancelar</button>
-                <button class="btn btn-primary">Criar Categoria</button>
+                <button id="create-category-btn" type="submit" form="category-form" class="btn btn-primary">Criar Categoria</button>
             </div>
         </div>
     </div>
 
-    <!-- ======== SCRIPT PARA CONTROLAR O MODAL ======== -->
+    <!-- ======== SCRIPT PARA CONTROLAR O MODAL E CRIAR CATEGORIAS ======== -->
     <script>
+        // Elementos do Modal
         const openModalBtn = document.getElementById('open-modal-btn');
         const closeModalBtn = document.getElementById('close-modal-btn');
         const cancelBtn = document.getElementById('cancel-btn');
         const modalOverlay = document.getElementById('category-modal');
+        
+        // Elementos do Formulário
+        const categoryForm = document.getElementById('category-form');
+        const createCategoryBtn = document.getElementById('create-category-btn');
+        const categoryNameInput = document.getElementById('category-name');
+        const categoriesGrid = document.getElementById('categories-grid');
 
         // Função para abrir o modal
         openModalBtn.addEventListener('click', () => {
@@ -127,14 +133,51 @@
             modalOverlay.classList.add('hidden');
         }
 
+        // Função para adicionar uma nova categoria à grelha
+        const addNewCategory = (name) => {
+            // 1. Criar o elemento 'a' que envolve o cartão
+            const cardLink = document.createElement('a');
+            cardLink.href = 'conjuntos.html';
+            cardLink.className = 'card-link';
+
+            // 2. Criar o HTML interno para o novo cartão
+            cardLink.innerHTML = `
+                <article class="card">
+                    <div class="card-header">
+                        <div class="card-icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z"></path></svg></div>
+                        <h2>${name}</h2>
+                    </div>
+                    <div class="card-body"><div class="stats-group"><span>0 conjuntos</span><span>0 cards total</span></div></div>
+                    <div class="card-footer">
+                        <span>0 cards para revisar</span>
+                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"></polyline></svg>
+                    </div>
+                </article>
+            `;
+
+            // 3. Adicionar o novo cartão à grelha
+            categoriesGrid.appendChild(cardLink);
+        };
+
         // Eventos para fechar o modal
         closeModalBtn.addEventListener('click', closeModal);
         cancelBtn.addEventListener('click', closeModal);
-
-        // Fechar ao clicar fora do modal
         modalOverlay.addEventListener('click', (event) => {
             if (event.target === modalOverlay) {
                 closeModal();
+            }
+        });
+
+        // Evento para lidar com a submissão do formulário
+        categoryForm.addEventListener('submit', (event) => {
+            event.preventDefault(); // Impede o recarregamento da página
+            
+            const categoryName = categoryNameInput.value.trim(); // Pega o valor e remove espaços extras
+            
+            if (categoryName) {
+                addNewCategory(categoryName); // Adiciona o novo cartão à página
+                categoryNameInput.value = ''; // Limpa o campo de texto
+                closeModal(); // Fecha o modal
             }
         });
     </script>
