@@ -1,0 +1,38 @@
+{
+  "categories": [
+    {
+      "id": 1,
+      "nome": "Matemática",
+      "sets": [
+        {
+          "id": 101,
+          "titulo": "Álgebra Básica",
+          "flashcards": [
+            { "id": 1001, "pergunta": "x²=9, quanto vale x?", "resposta": "±3" },
+            { "id": 1002, "pergunta": "Derivada de x²?", "resposta": "2x" }
+          ]
+        },
+        {
+          "id": 102,
+          "titulo": "Trigonometria",
+          "flashcards": [
+            { "id": 1003, "pergunta": "sen(90°)?", "resposta": "1" }
+          ]
+        }
+      ]
+    },
+    {
+      "id": 2,
+      "nome": "História",
+      "sets": [
+        {
+          "id": 201,
+          "titulo": "Segunda Guerra Mundial",
+          "flashcards": [
+            { "id": 2001, "pergunta": "Em que ano começou?", "resposta": "1939" }
+          ]
+        }
+      ]
+    }
+  ]
+}
