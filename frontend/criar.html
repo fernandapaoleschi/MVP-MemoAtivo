@@ -3,16 +3,14 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>MemoAtivo - Criar Conjunto</title>
-    <!-- Mudei o link para "estilo.css" para manter a consistência -->
-    <link rel="stylesheet" href="estilo.css">
+    <title>Criar Conjunto - MemoAtivo</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="estilo.css">
 </head>
 <body>
 
-    <!-- Cabeçalho Consistente -->
     <header class="main-header">
         <div class="container">
             <a href="index.html" class="logo">
@@ -29,64 +27,66 @@
         </div>
     </header>
 
-    <!-- Conteúdo Principal Alinhado com o Design -->
     <main class="main-content">
-        <div class="container form-page-container">
-            <div class="view-header">
+        <div class="container form-container">
+            <div class="view-title">
                 <h1>Criar Novo Conjunto de Estudo</h1>
                 <p>Digite um tópico e deixe a IA gerar flashcards para você</p>
             </div>
 
-            <div class="form-container">
-                <form id="create-set-form">
-                    <div class="form-group">
-                        <label for="category">Categoria *</label>
-                        <select id="category" name="category" required>
-                            <option value="" disabled selected>Selecione uma categoria</option>
-                            <option value="historia">História</option>
-                            <option value="matematica">Matemática</option>
-                        </select>
-                    </div>
+            <form class="create-set-form">
+                <div class="form-header">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M12 2.75l2.83 2.83-2.24 2.24-.7-.7-.7.7 2.24 2.24-2.83 2.83L12 10.5l-2.83-2.83 2.24-2.24.7.7.7-.7-2.24-2.24L12 2.75zm0 10.5l-2.83 2.83 2.24 2.24.7-.7.7.7-2.24 2.24 2.83 2.83L12 21.25l2.83-2.83-2.24-2.24-.7.7-.7-.7 2.24-2.24L12 13.25zM2.75 12l2.83-2.83 2.24 2.24-.7.7.7.7-2.24 2.24-2.83-2.83L5.5 12l-2.83-2.83 2.24-2.24.7.7.7-.7-2.24-2.24L2.75 12zm18.5 0l-2.83 2.83-2.24-2.24.7-.7-.7-.7 2.24-2.24 2.83 2.83L18.5 12l2.83 2.83-2.24 2.24-.7-.7-.7.7 2.24 2.24L21.25 12z" fill="#4F46E5"></path></svg>
+                    <span>Gerar Flashcards</span>
+                </div>
 
-                    <div class="form-group">
-                        <label for="topic">Tópico *</label>
-                        <input type="text" id="topic" name="topic" placeholder="ex: Independência do Brasil" required>
+                <div class="form-group">
+                    <label for="set-category">Categoria *</label>
+                    <select id="set-category" name="set-category" required>
+                        <option value="" disabled selected>Selecione uma matéria</option>
+                        <option value="portugues">Português</option>
+                        <option value="matematica">Matemática</option>
+                        <option value="historia">História</option>
+                        <option value="geografia">Geografia</option>
+                        <option value="biologia">Biologia</option>
+                        <option value="fisica">Física</option>
+                        <option value="quimica">Química</option>
+                        <option value="filosofia">Filosofia</option>
+                        <option value="sociologia">Sociologia</option>
+                        <option value="artes">Artes</option>
+                        <option value="ingles">Inglês</option>
+                        <option value="espanhol">Espanhol</option>
+                    </select>
+                </div>
+                
+                <div class="form-group">
+                    <label for="set-topic">Tópico *</label>
+                    <input type="text" id="set-topic" name="set-topic" placeholder="ex: Independência do Brasil" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="set-description">Descrição *</label>
+                    <textarea id="set-description" name="set-description" rows="3" placeholder="Adicione mais contexto sobre o que você quer estudar..."></textarea>
+                    <small>Forneça detalhes para que a IA gere flashcards mais precisos</small>
+                </div>
+                
+                <div class="form-group">
+                    <label for="set-cards-number">Número de Flashcards: <span id="slider-value">10</span></label>
+                    <input type="range" id="set-cards-number" name="set-cards-number" min="5" max="20" value="10">
+                    <div class="slider-labels">
+                        <span>5 cards</span>
+                        <span>20 cards</span>
                     </div>
+                </div>
 
-                    <div class="form-group">
-                        <label for="description">Descrição *</label>
-                        <textarea id="description" name="description" rows="4" placeholder="Adicione mais contexto sobre o que você quer estudar..." required></textarea>
-                        <small>Forneça detalhes para que a IA gere flashcards mais precisos</small>
-                    </div>
-
-                    <div class="form-group">
-                        <label for="num-flashcards">Número de Flashcards: <span id="slider-value">10</span></label>
-                        <input type="range" id="num-flashcards" name="num-flashcards" min="5" max="10" value="10">
-                        <div class="slider-labels">
-                            <span>5 cards</span>
-                            <span>10 cards</span>
-                        </div>
-                    </div>
-                    
-                    <button type="submit" class="btn btn-primary btn-full-width">
-                         <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon></svg>
-                        <span>Gerar Flashcards</span>
-                    </button>
-                </form>
-            </div>
+                <button type="submit" class="btn btn-primary btn-full">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M12 2.75l2.83 2.83-2.24 2.24-.7-.7-.7.7 2.24 2.24-2.83 2.83L12 10.5l-2.83-2.83 2.24-2.24.7.7.7-.7-2.24-2.24L12 2.75zm0 10.5l-2.83 2.83 2.24 2.24.7-.7.7.7-2.24 2.24 2.83 2.83L12 21.25l2.83-2.83-2.24-2.24-.7.7-.7-.7 2.24-2.24L12 13.25zM2.75 12l2.83-2.83 2.24 2.24-.7.7.7.7-2.24 2.24-2.83-2.83L5.5 12l-2.83-2.83 2.24-2.24.7.7.7-.7-2.24-2.24L2.75 12zm18.5 0l-2.83 2.83-2.24-2.24.7-.7-.7-.7 2.24-2.24 2.83 2.83L18.5 12l2.83 2.83-2.24 2.24-.7-.7-.7.7 2.24 2.24L21.25 12z" fill="currentColor"></path></svg>
+                    <span>Gerar Flashcards</span>
+                </button>
+            </form>
         </div>
     </main>
-    
-    <script>
-        // Pequeno script para o slider (pode ser movido para o .js principal depois)
-        const slider = document.getElementById('num-flashcards');
-        const sliderValue = document.getElementById('slider-value');
-        if (slider) {
-            slider.oninput = function() {
-                sliderValue.textContent = this.value;
-            }
-        }
-    </script>
 
 </body>
 </html>
+
