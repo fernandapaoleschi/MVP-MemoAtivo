@@ -69,7 +69,13 @@
         {
           "id": "sub-4690ab4a-b682-4d07-895b-624915a78fcd",
           "name": "teste",
-          "sets": []
+          "sets": [
+            {
+              "id": "set-53829fcb-89d3-4a10-abeb-0bb2bd34a93b",
+              "name": "te",
+              "flashcards": []
+            }
+          ]
         }
       ]
     },
@@ -81,7 +87,19 @@
     {
       "id": "cat-db2cc50e-aa4e-4607-ab9d-5b140a4d8ebc",
       "name": "teste",
-      "subtopics": []
+      "subtopics": [
+        {
+          "id": "sub-f2aa2cee-e922-4376-a8a2-d053b8d5c647",
+          "name": "rsrre",
+          "sets": [
+            {
+              "id": "set-7799a72c-adfc-43d2-9750-8dd74b01d636",
+              "name": "rere",
+              "flashcards": []
+            }
+          ]
+        }
+      ]
     }
   ]
 }

@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gerar Flashcards com IA - MemoAtivo</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <header>
+        <nav id="navbar" class="container">
+            <a href="dashboard.html" id="logo">
+                <img src="images/MemoAtivo.png" alt="Logo MemoAtivo">
+            </a>
+            <div class="nav-right">
+                <ul id="nav_list">
+                    <li class="nav-item"><a href="dashboard.html">Dashboard</a></li>
+                    <li class="nav-item"><a href="criar.html" class="active">Create</a></li>
+                </ul>
+                <a href="#" class="nav-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg>
+                </a>
+            </div>
+        </nav>
+    </header>
+
+    <main class="main-content">
+        <div class="container form-page-container">
+            <div class="view-header centered">
+                <div class="view-title">
+                    <h1 id="pageTitle">Gerar Flashcards para...</h1>
+                    <p>Descreva o que quer estudar e a IA criará os flashcards para si.</p>
+                </div>
+            </div>
+
+            <div class="form-container">
+                <form id="generateForm">
+                    <div class="form-group">
+                        <label for="topic">Tópico do Conjunto *</label>
+                        <input type="text" id="topic" name="topic" placeholder="Ex: Causas e Consequências" required>
+                         <small>Dê um nome a este conjunto de flashcards.</small>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="description">Descrição para a IA *</label>
+                        <textarea id="description" name="description" rows="4" placeholder="Ex: Detalhar os principais eventos que levaram à Independência do Brasil, incluindo a vinda da família real..." required></textarea>
+                        <small>Quanto mais detalhes, melhores serão os flashcards.</small>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="num-flashcards">Número de Flashcards: <span id="slider-value">10</span></label>
+                        <input type="range" id="num-flashcards" name="quantity" min="5" max="20" value="10">
+                        <div class="slider-labels">
+                            <span>5</span>
+                            <span>20</span>
+                        </div>
+                    </div>
+                    
+                    <button type="submit" class="btn btn-primary btn-full-width">
+                        Gerar Flashcards
+                    </button>
+                </form>
+            </div>
+        </div>
+    </main>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const params = new URLSearchParams(window.location.search);
+            const categoryId = params.get('catId');
+            const subtopicId = params.get('subId');
+            const subtopicName = params.get('subName');
+
+            const pageTitle = document.getElementById('pageTitle');
+            const form = document.getElementById('generateForm');
+
+            if (!categoryId || !subtopicId || !subtopicName) {
+                document.querySelector('.container').innerHTML = '<h1>Erro</h1><p>Informações da categoria ou sub-tópico em falta. Por favor, volte e tente novamente.</p>';
+                return;
+            }
+
+            pageTitle.textContent = `Gerar Flashcards para ${subtopicName}`;
+
+            form.addEventListener('submit', async (event) => {
+                event.preventDefault();
+                const formData = new FormData(form);
+                const data = {
+                    name: formData.get('topic'),
+                    description: formData.get('description'),
+                    quantity: parseInt(formData.get('quantity'), 10)
+                };
+
+                // Este é o endpoint que vamos criar no app.py
+                const API_URL = `http://127.0.0.1:5000/api/categories/${categoryId}/subtopics/${subtopicId}/generate-sets`;
+
+                try {
+                    const response = await fetch(API_URL, {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify(data)
+                    });
+
+                    if (!response.ok) {
+                        throw new Error(`O servidor respondeu com o erro ${response.status}`);
+                    }
+
+                    // Se tudo correr bem, redireciona de volta para a página do sub-tópico
+                    window.location.href = `subtopico.html?${params.toString()}`;
+
+                } catch (error) {
+                    console.error('Erro ao gerar flashcards:', error);
+                    alert('Não foi possível gerar os flashcards. Verifique a consola para mais detalhes.');
+                }
+            });
+
+            // Lógica do slider
+            const slider = document.getElementById('num-flashcards');
+            const sliderValue = document.getElementById('slider-value');
+            slider.addEventListener('input', (event) => {
+                sliderValue.textContent = event.target.value;
+            });
+        });
+    </script>
+
+</body>
+</html>
