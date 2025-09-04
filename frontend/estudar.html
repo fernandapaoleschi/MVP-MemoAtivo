@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sessão de Estudo - MemoAtivo</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/frontend/style.css">
+</head>
+<body>
+
+  <header>
+    <nav id="navbar" class="container">
+        <a href="dashboard.html" id="logo">
+            <img src="images/MemoAtivo.png" alt="Logo MemoAtivo">
+        </a>
+        <div class="nav-right">
+            <ul id="nav_list">
+                <li class="nav-item"><a href="dashboard.html" class="active">Dashboard</a></li>
+                <li class="nav-item"><a href="criar.html">Create</a></li>
+            </ul>
+            <a href="#" class="nav-icon">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg>
+            </a>
+        </div>
+    </nav>
+  </header>
+    <main class="main-content">
+        <div class="study-container">
+            <div class="study-header">
+                <a href="conjuntos.html" class="back-link">← Back to Dashboard</a>
+                <div class="study-info">
+                    <h2>Brazilian Independence</h2>
+                    <p>Card 1 of 5</p>
+                </div>
+                <span class="study-session-label">Study Session</span>
+            </div>
+
+            <div class="progress-bar-container">
+                <div class="progress-bar" style="width: 20%;"></div>
+            </div>
+
+            <div class="flashcard">
+                <div class="flashcard-tag">Question</div>
+                <p class="flashcard-text">When did Brazil declare independence from Portugal?</p>
+                <button class="btn btn-primary">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 12s3-7 10-7 10 7 10 7-3 7-10 7-10-7-10-7z"></path><circle cx="12" cy="12" r="3"></circle></svg>
+                    Reveal Answer
+                </button>
+            </div>
+
+            <div class="study-score">
+                <span class="score-correct">Correct: 0</span>
+                <span class="score-incorrect">Incorrect: 0</span>
+            </div>
+        </div>
+    </main>
+
+</body>
+</html>

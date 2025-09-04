@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>MemoAtivo - Dashboard</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/frontend/style.css">
+</head>
+<body>
+
+  <header>
+    <nav id="navbar" class="container">
+        <a href="dashboard.html" id="logo">
+            <img src="images/MemoAtivo.png" alt="Logo MemoAtivo">
+        </a>
+        <div class="nav-right">
+            <ul id="nav_list">
+                <li class="nav-item"><a href="dashboard.html" class="active">Dashboard</a></li>
+                <li class="nav-item"><a href="criar.html">Create</a></li>
+            </ul>
+            <a href="#" class="nav-icon">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg>
+            </a>
+        </div>
+    </nav>
+  </header>
+
+  <main class="main-content">
+    <div class="container">
+      <div class="view-header">
+        <div class="view-title">
+          <h1>Suas Categorias de Estudo</h1>
+          <p>Organize seus estudos por categorias e crie novos conjuntos de flashcards</p>
+        </div>
+        <button id="novaCategoriaBtn" class="btn btn-primary">
+          <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="5" x2="12" y2="19"></line><line x1="5" y1="12" x2="19" y2="12"></line></svg>
+          <span>Nova Categoria</span>
+        </button>
+      </div>
+      <div class="categories-grid" id="categoriesGrid">
+         <a href="conjuntos.html?categoria=História">
+            <article class="card">
+                <div class="card-header">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z"></path></svg>
+                    <h2>História</h2>
+                </div>
+                <div class="card-body">
+                    <span>2 conjuntos</span>
+                    <span>65 cards total</span>
+                </div>
+                <div class="card-footer">
+                    <span>20 cards para revisar</span>
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"></polyline></svg>
+                </div>
+            </article>
+        </a>
+      </div>
+    </div>
+  </main>
+  
+  <div id="modalNovaCategoria" class="modal-overlay hidden">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h2>Criar Nova Categoria</h2>
+        <button class="close-button" id="closeModalBtn">×</button>
+      </div>
+      <div class="modal-body">
+        <div class="form-group">
+          <label for="nomeCategoriaInput">Nome da Categoria</label>
+          <input type="text" id="nomeCategoriaInput" placeholder="Ex: Biologia, Física, Química...">
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button id="cancelModalBtn" class="btn btn-secondary">Cancelar</button>
+        <button id="createModalBtn" class="btn btn-primary">Criar Categoria</button>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    const modal = document.getElementById("modalNovaCategoria");
+    const btnNova = document.getElementById("novaCategoriaBtn");
+    const btnClose = document.getElementById("closeModalBtn");
+    const btnCancel = document.getElementById("cancelModalBtn");
+    const btnCreate = document.getElementById("createModalBtn");
+    const nomeCategoriaInput = document.getElementById("nomeCategoriaInput");
+    const grid = document.getElementById("categoriesGrid");
+    function abrirModal() { nomeCategoriaInput.value = ""; modal.classList.remove("hidden"); nomeCategoriaInput.focus(); }
+    function fecharModal() { modal.classList.add("hidden"); }
+    function criarCategoria() {
+      const materia = nomeCategoriaInput.value.trim();
+      if (!materia) { alert("Por favor, digite o nome da categoria."); return; }
+      const existingCategories = grid.querySelectorAll("h2");
+      const jaExiste = [...existingCategories].some(h2 => h2.textContent.toLowerCase() === materia.toLowerCase());
+      if (jaExiste) { alert("Essa categoria já existe!"); return; }
+      const novoCard = document.createElement("a");
+      novoCard.href = `conjuntos.html?categoria=${encodeURIComponent(materia)}`;
+      novoCard.innerHTML = `<article class="card"><div class="card-header"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z"></path></svg><h2>${materia}</h2></div><div class="card-body"><span>0 conjuntos</span><span>0 cards total</span></div><div class="card-footer"><span>0 cards para revisar</span><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"></polyline></svg></div></article>`;
+      grid.appendChild(novoCard);
+      fecharModal();
+    }
+    btnNova.addEventListener("click", abrirModal);
+    btnClose.addEventListener("click", fecharModal);
+    btnCancel.addEventListener("click", fecharModal);
+    btnCreate.addEventListener("click", criarCategoria);
+    nomeCategoriaInput.addEventListener("keyup", function(event) { if (event.key === "Enter") { event.preventDefault(); btnCreate.click(); } });
+  </script>
+
+</body>
+</html>

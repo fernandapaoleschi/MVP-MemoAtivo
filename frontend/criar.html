@@ -7,86 +7,79 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="estilo.css">
+    <link rel="stylesheet" href="/frontend/style.css">
 </head>
 <body>
 
-    <header class="main-header">
-        <div class="container">
-            <a href="index.html" class="logo">
-                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20v2H6.5A2.5 2.5 0 0 1 4 16.5v-11A2.5 2.5 0 0 1 6.5 3H10v2H6.5a.5.5 0 0 0-.5.5v11a.5.5 0 0 0 .5.5H20V15h2v2.5a2.5 2.5 0 0 1-2.5 2.5H6.5A4.5 4.5 0 0 1 2 15.5v-7A4.5 4.5 0 0 1 6.5 4H14a1 1 0 0 1 1 1v1h2V5a3 3 0 0 0-3-3H6.5A2.5 2.5 0 0 0 4 4.5v11ZM22 8V5h-2v3h-3v2h3v3h2v-3h3V8h-3Z" fill="#4F46E5"></path></svg>
-                <span>MemoAtivo</span>
+    <header>
+        <nav id="navbar" class="container">
+            <a href="dashboard.html" id="logo">
+                <img src="images/MemoAtivo.png" alt="Logo MemoAtivo">
             </a>
-            <nav class="main-nav">
-                <a href="index.html" class="nav-link">Dashboard</a>
-                <a href="criar.html" class="nav-link active">Criar</a>
-                <a href="#" class="nav-link icon">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg>
+            <div class="nav-right">
+                <ul id="nav_list">
+                    <li class="nav-item"><a href="dashboard.html">Dashboard</a></li>
+                    <li class="nav-item"><a href="criar.html" class="active">Create</a></li>
+                </ul>
+                <a href="#" class="nav-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg>
                 </a>
-            </nav>
-        </div>
+            </div>
+        </nav>
     </header>
 
     <main class="main-content">
-        <div class="container form-container">
-            <div class="view-title">
-                <h1>Criar Novo Conjunto de Estudo</h1>
-                <p>Digite um tópico e deixe a IA gerar flashcards para você</p>
+        <div class="container form-page-container">
+            <div class="view-header centered">
+                <div class="view-title">
+                    <h1>Criar Novo Conjunto de Estudo</h1>
+                    <p>Digite um tópico e deixe a IA gerar flashcards para você</p>
+                </div>
             </div>
-
-            <form class="create-set-form">
+            <div class="form-container">
                 <div class="form-header">
-                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M12 2.75l2.83 2.83-2.24 2.24-.7-.7-.7.7 2.24 2.24-2.83 2.83L12 10.5l-2.83-2.83 2.24-2.24.7.7.7-.7-2.24-2.24L12 2.75zm0 10.5l-2.83 2.83 2.24 2.24.7-.7.7.7-2.24 2.24 2.83 2.83L12 21.25l2.83-2.83-2.24-2.24-.7.7-.7-.7 2.24-2.24L12 13.25zM2.75 12l2.83-2.83 2.24 2.24-.7.7.7.7-2.24 2.24-2.83-2.83L5.5 12l-2.83-2.83 2.24-2.24.7.7.7-.7-2.24-2.24L2.75 12zm18.5 0l-2.83 2.83-2.24-2.24.7-.7-.7-.7 2.24-2.24 2.83 2.83L18.5 12l2.83 2.83-2.24 2.24-.7-.7-.7.7 2.24 2.24L21.25 12z" fill="#4F46E5"></path></svg>
-                    <span>Gerar Flashcards</span>
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2L12 22"></path><path d="M22 12L2 12"></path><path d="M12 2a4.5 4.5 0 0 1 4.5 4.5c0 2.21-1.79 4-4 4s-4-1.79-4-4a4.5 4.5 0 0 1 4.5-4.5z"></path><path d="M12 22a4.5 4.5 0 0 0 4.5-4.5c0-2.21-1.79 4-4-4s-4 1.79-4 4a4.5 4.5 0 0 0 4.5 4.5z"></path></svg>
+                    <h3>Gerar Flashcards</h3>
                 </div>
-
-                <div class="form-group">
-                    <label for="set-category">Categoria *</label>
-                    <select id="set-category" name="set-category" required>
-                        <option value="" disabled selected>Selecione uma matéria</option>
-                        <option value="portugues">Português</option>
-                        <option value="matematica">Matemática</option>
-                        <option value="historia">História</option>
-                        <option value="geografia">Geografia</option>
-                        <option value="biologia">Biologia</option>
-                        <option value="fisica">Física</option>
-                        <option value="quimica">Química</option>
-                        <option value="filosofia">Filosofia</option>
-                        <option value="sociologia">Sociologia</option>
-                        <option value="artes">Artes</option>
-                        <option value="ingles">Inglês</option>
-                        <option value="espanhol">Espanhol</option>
-                    </select>
-                </div>
-                
-                <div class="form-group">
-                    <label for="set-topic">Tópico *</label>
-                    <input type="text" id="set-topic" name="set-topic" placeholder="ex: Independência do Brasil" required>
-                </div>
-                
-                <div class="form-group">
-                    <label for="set-description">Descrição *</label>
-                    <textarea id="set-description" name="set-description" rows="3" placeholder="Adicione mais contexto sobre o que você quer estudar..."></textarea>
-                    <small>Forneça detalhes para que a IA gere flashcards mais precisos</small>
-                </div>
-                
-                <div class="form-group">
-                    <label for="set-cards-number">Número de Flashcards: <span id="slider-value">10</span></label>
-                    <input type="range" id="set-cards-number" name="set-cards-number" min="5" max="20" value="10">
-                    <div class="slider-labels">
-                        <span>5 cards</span>
-                        <span>20 cards</span>
+                <form>
+                    <div class="form-group">
+                        <label for="categoria">Categoria *</label>
+                        <select id="categoria" name="categoria">
+                            <option value="">Selecione uma categoria</option>
+                            <option value="historia">História</option>
+                            <option value="matematica">Matemática</option>
+                            <option value="portugues">Português</option>
+                        </select>
                     </div>
-                </div>
-
-                <button type="submit" class="btn btn-primary btn-full">
-                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M12 2.75l2.83 2.83-2.24 2.24-.7-.7-.7.7 2.24 2.24-2.83 2.83L12 10.5l-2.83-2.83 2.24-2.24.7.7.7-.7-2.24-2.24L12 2.75zm0 10.5l-2.83 2.83 2.24 2.24.7-.7.7.7-2.24 2.24 2.83 2.83L12 21.25l2.83-2.83-2.24-2.24-.7.7-.7-.7 2.24-2.24L12 13.25zM2.75 12l2.83-2.83 2.24 2.24-.7.7.7.7-2.24 2.24-2.83-2.83L5.5 12l-2.83-2.83 2.24-2.24.7.7.7-.7-2.24-2.24L2.75 12zm18.5 0l-2.83 2.83-2.24-2.24.7-.7-.7-.7 2.24-2.24 2.83 2.83L18.5 12l2.83 2.83-2.24 2.24-.7-.7-.7.7 2.24 2.24L21.25 12z" fill="currentColor"></path></svg>
-                    <span>Gerar Flashcards</span>
-                </button>
-            </form>
+                    <div class="form-group">
+                        <label for="topico">Tópico *</label>
+                        <input type="text" id="topico" name="topico" placeholder="ex: Independência do Brasil">
+                    </div>
+                    <div class="form-group">
+                        <label for="descricao">Descrição *</label>
+                        <textarea id="descricao" name="descricao" rows="4" placeholder="Adicione mais contexto sobre o que você quer estudar..."></textarea>
+                        <small>Forneça detalhes para que a IA gere flashcards mais precisos</small>
+                    </div>
+                    <div class="form-group">
+                        <label for="num-flashcards">Número de Flashcards: <span id="slider-value">10</span></label>
+                        <input type="range" id="num-flashcards" name="num-flashcards" min="5" max="10" value="10">
+                        <div class="slider-labels">
+                            <span>5 cards</span>
+                            <span>10 cards</span>
+                        </div>
+                    </div>
+                    <button type="submit" class="btn btn-primary btn-full-width">
+                        Gerar Flashcards
+                    </button>
+                </form>
+            </div>
         </div>
     </main>
+    <script>
+        const slider = document.getElementById('num-flashcards');
+        const sliderValue = document.getElementById('slider-value');
+        slider.addEventListener('input', (event) => { sliderValue.textContent = event.target.value; });
+    </script>
 
 </body>
 </html>
-
