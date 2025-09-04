@@ -51,6 +51,16 @@
       "id": "cat-mat-01",
       "name": "Matemática",
       "subtopics": []
+    },
+    {
+      "id": "cat-7cda91a2-20e7-4d36-b02e-9105bbc21ddd",
+      "name": "teste",
+      "subtopics": []
+    },
+    {
+      "id": "cat-30525e36-62cc-4f82-aefe-54da73cd859f",
+      "name": "biologia",
+      "subtopics": []
     }
   ]
 }
